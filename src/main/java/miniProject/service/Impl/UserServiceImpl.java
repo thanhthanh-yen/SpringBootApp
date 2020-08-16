@@ -17,16 +17,19 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
+	UserMapper userMapper;
 
-	public UserDto getUserList() {
+	public List<UserDto> getUserList() {
 		// TODO Auto-generated method stub
 		try {
 			List<User> users = userRepository.getAllUser();
 
-			List<UserDto> userDtos = new ArrayList<UserDto>();
+			List<UserDto> userDtos = new ArrayList<>();
 			if (users != null && !users.isEmpty()) {
-				users.forEach(user -> userDtos.add(UserMapper.toDto(user)));
+				users.forEach(user -> userDtos.add(userMapper.toDto(user)));
 			}
+			return userDtos;
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
