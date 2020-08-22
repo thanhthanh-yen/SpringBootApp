@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContextException;
 import org.springframework.stereotype.Service;
 
 import miniProject.dto.UserDto;
@@ -34,6 +35,24 @@ public class UserServiceImpl implements UserService {
 			// TODO: handle exception
 		}
 		return null;
+	}
+
+	@Override
+	public UserDto insertUser(UserDto userDto) {
+		// TODO Auto-generated method stub
+		try {
+			User userDb = userRepository.findByUserName(userDto.getUserName());
+			if (userDb == null) {
+				User user = userMapper.toEntity(userDto);
+				UserDto saveUserDto = userMapper.toDto(userRepository.save(user));
+				return saveUserDto;
+			} else {
+				throw new ApplicationContextException("User has existed");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw new ApplicationContextException("Can not inser user!");
+		}
 	}
 
 }

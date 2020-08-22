@@ -13,36 +13,36 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", columnDefinition = "serial")
-	private Long id;
+	private Long userId;
 
 	@Column(name = "name")
-	private String name;
+	private String userName;
 
 	@Column(name = "age")
-	private int age;
+	private int userAge;
 
-	public Long getId() {
-		return id;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
-	public String getName() {
-		return name;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	public int getAge() {
-		return age;
+	public int getUserAge() {
+		return userAge;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
+	public void setUserAge(int userAge) {
+		this.userAge = userAge;
 	}
 
 	public User() {

@@ -2,37 +2,41 @@ package miniProject.dto;
 
 public class UserDto {
 
-	private Long id;
-	private String name;
-	private int age;
+	public interface New {
 
-	public Long getId() {
-		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	private Long userId;
+	private String userName;
+	private int userAge;
+
+	public Long getUserId() {
+		return userId;
 	}
 
-	public String getName() {
-		return name;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getUserName() {
+		return userName;
 	}
 
-	public int getAge() {
-		return age;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
+	public int getUserAge() {
+		return userAge;
+	}
+
+	public void setUserAge(int userAge) {
+		this.userAge = userAge;
 	}
 
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "UserDto [id=" + id + ", name=" + name + ", age=" + age + "]";
+		return "UserDto [id=" + userId + ", name=" + userName + ", age=" + userAge + "]";
 	}
 }

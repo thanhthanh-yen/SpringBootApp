@@ -9,4 +9,6 @@ import miniProject.dto.UserDto;
 @Service
 public interface UserService {
 	List<UserDto> getUserList();
+
+	UserDto insertUser(UserDto userDto);
 }
