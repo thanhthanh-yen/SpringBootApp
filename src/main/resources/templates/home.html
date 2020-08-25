@@ -9,6 +9,8 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.bootstrap.min.css">
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -17,6 +19,13 @@
 	src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script
 	src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script
+	src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
+<script
+	src="https://cdn.datatables.net/responsive/2.2.5/js/responsive.bootstrap.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
 <title>Home</title>
 </head>
 <body>
@@ -28,7 +37,7 @@
 					<th scope="col">ID</th>
 					<th scope="col">Name</th>
 					<th scope="col">Age</th>
-					<th scope="col">Popup</th>
+					<th scope="col">Show detail</th>
 				</tr>
 			</thead>
 				
@@ -40,21 +49,55 @@
 	            "url": "/getUserList", 
 	            "dataSrc" : function (json) {
 	            // manipulate your data (json)
-	            ...
+	            
 
 	            // return the data that DataTables is to use to draw the table
-	            return json;
-	        }
+	            	return json;
+	        	}
+	        },
+	        
 	        "columns": [
-	            { "data": "ID"},
-	            { "data": "Name"},
-	            { "data": "Age"},
-	            { "data": "Popup"}
+	            { "data": "userId"},
+	            { "data": "userName"},
+	            { "data": "userAge"},
+	            { "data": null,
+	            	"render": function(data) {
+	            		return '<button btnShowDetail type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">'
+	            		 + 'Click here'
+	            		 +  '</button>';
+	            	}
+	            	}
 	        ]
-	        }
 	    });
 		
+	    $('myDataTable').on('click', '.btnShowDetail' ,function(){ 
+	    	  $("#exampleModal").modal('show');
+	    });
+
+		
 		</script>
+		
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        ...
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary">Save changes</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
 		<br>
 		<div class="row FooterUserList">
 			<button class="btn btn-primary" style="margin-right: 10px"
