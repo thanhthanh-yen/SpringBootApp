@@ -5,7 +5,7 @@
 	display: flex;
 }
 
-.FooterUserList, .FooterLogin {
+.FooterLogin {
 	margin-right: 3px;
 }
 
