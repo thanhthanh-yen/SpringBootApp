@@ -38,9 +38,10 @@ public class LoginController {
 		String password = loginForm.getPassword();
 		if ("admin".equals(username) && "admin".equals(password)) {
 			return "home";
+		} else {
+			model.addAttribute("invalidCredentials", true);
+			return "login";
 		}
-		model.addAttribute("invalidCredentials", true);
-		return "login";
 	}
 
 	@RequestMapping("/help")
@@ -48,14 +49,11 @@ public class LoginController {
 		return "help";
 	}
 
-	@GetMapping("/getUserList")
-	public ResponseEntity<List<UserDto>> getUser() {
+	@GetMapping("/home")
+	public String getUser(Model model) {
 		List<UserDto> userDtos = userService.getUserList();
-		if (userDtos != null) {
-			return new ResponseEntity<>(userDtos, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(userDtos, HttpStatus.NOT_FOUND);
-		}
+		model.addAttribute("users", userDtos);
+		return "home";
 	}
 
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
