@@ -13,14 +13,29 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+<script th:src="@{/js/main.js}"></script>
+<script th:src="@{/libs/js-xlsx/xlsx.core.min.js}"></script>
 
 <title>Home</title>
 </head>
 <body>
 	<div class="UserList container mb-3 mt-3">
 		<h1 style="color: green">User List</h1>
-		<table class="table table-bordered myDataTable" style="width: 100%">
+
+		<!-- Search -->
+		<div>
+			<nav class="navbar navbar-light bg-light">
+				<form class="form-inline">
+					<input class="form-control mr-sm-2 " id="tableSearch" type="search"
+						placeholder="Search" aria-label="Search">
+					<button class="btn btn-outline-success my-2 my-sm-0" id="searchBtn"
+						type="submit">Search</button>
+				</form>
+			</nav>
+		</div>
+
+		<!-- Table -->
+		<table class="table table-bordered" style="width: 100%">
 			<thead class="table-info">
 				<tr>
 					<th scope="col">ID</th>
@@ -30,12 +45,14 @@
 				</tr>
 			</thead>
 
-			<tbody>
+			<tbody id="myTable">
 				<tr th:each="user : ${users}">
 					<td th:text="${user.userId}"></td>
 					<td th:text="${user.userName}"></td>
 					<td th:text="${user.userAge}"></td>
-
+					<td>
+						<button type="button" class="btn btn-primary" id="shownBtn">Show</button>
+					</td>
 				</tr>
 
 			</tbody>
@@ -48,7 +65,8 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+						<h5 class="modal-title" id="exampleModalLabel">User
+							information</h5>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
@@ -56,19 +74,16 @@
 					</div>
 					<div class="modal-body">...</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Save
-							changes</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<script>
-			
-		</script>
-
+		<!-- Export CSV -->
+		<div>
+			<button type="button" class="btn btn-primary" id="export">Export</button>
+			<button type="button" class="btn btn-primary">Print</button>
+		</div>
 	</div>
 </body>
 </html>
