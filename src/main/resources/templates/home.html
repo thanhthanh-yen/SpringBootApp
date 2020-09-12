@@ -56,7 +56,8 @@
 					<td id="rowUserName" th:text="${user.userName}"></td>
 					<td id="rowUserAge" th:text="${user.userAge}"></td>
 					<td>
-						<button type="button" class="btn btn-info" id="shownBtn">Click here</button>
+						<button type="button" class="btn btn-info" id="shownBtn">Click
+							here</button>
 					</td>
 				</tr>
 
@@ -79,21 +80,18 @@
 					</div>
 					<div class="modal-body">
 						<form class="form-inline justify-content-end ">
-							<label for="inputId">ID</label>
-							<input id="inputId" type="text"
+							<label for="inputId">ID</label> <input id="inputId" type="text"
 								class="form-control mx-sm-3" />
 						</form>
-						
+
 						<form class="form-inline mt-2 justify-content-end">
-							<label for="inputName">Name</label>
-							<input id="inputName" type="text"
-								class="form-control mx-sm-3" />
+							<label for="inputName">Name</label> <input id="inputName"
+								type="text" class="form-control mx-sm-3" />
 						</form>
-						
+
 						<form class="form-inline mt-2 justify-content-end">
-							<label for="inputAge">Age</label>
-							<input id="inputAge" type="text"
-								class="form-control mx-sm-3" />
+							<label for="inputAge">Age</label> <input id="inputAge"
+								type="text" class="form-control mx-sm-3" />
 						</form>
 
 					</div>
@@ -108,6 +106,15 @@
 			<button type="button" class="btn btn-primary" id="export">Export</button>
 			<button type="button" class="btn btn-primary">Print</button>
 		</div>
+
+		<hr/>
+		<form method="POST" enctype="multipart/form-data"
+			th:action="@{/upload-file}">
+			<input type="file" name="file"> <br /> <br />
+			<button type="submit">Submit</button>
+			<br />
+		</form>
+		
 	</div>
 </body>
 </html>

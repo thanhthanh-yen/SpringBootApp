@@ -10,12 +10,19 @@ import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import miniProject.commons.FileResponse;
 import miniProject.dto.UserDto;
 import miniProject.form.LoginForm;
+import miniProject.service.StorageService;
 import miniProject.service.UserService;
 
 @Controller
@@ -23,6 +30,9 @@ public class LoginController {
 
 	@Autowired
 	UserService userService;
+
+	@Autowired
+	StorageService storageService;
 
 	// get login form page
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -66,4 +76,14 @@ public class LoginController {
 			return new ResponseEntity<>(result, HttpStatus.NOT_ACCEPTABLE);
 		}
 	}
+
+	@PostMapping("/upload-file")
+	@ResponseBody
+	public FileResponse uploadFile(@RequestParam("file") MultipartFile file) {
+		String name = storageService.store(file);
+
+		String uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/download/").path(name).toUriString();
+		return new FileResponse(name, uri, file.getContentType(), file.getSize());
+	}
+
 }
