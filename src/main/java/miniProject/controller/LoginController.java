@@ -82,7 +82,7 @@ public class LoginController {
 	public FileResponse uploadFile(@RequestParam("file") MultipartFile file) {
 		String name = storageService.store(file);
 
-		String uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/download/").path(name).toUriString();
+		String uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/uploads/").path(name).toUriString();
 		return new FileResponse(name, uri, file.getContentType(), file.getSize());
 	}
 

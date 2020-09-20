@@ -1,4 +1,12 @@
 $(document).on('click', '#searchBtn', buttonSearchOnClick);
+function buttonSearchOnClick() {
+	var value = $("#tableSearch").val().toLowerCase();
+	console.log(value);
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+}
+
 $(document).ready(function() {
 	$('.table').on('click', '#shownBtn', function(){
 		console.log("Show modal");
@@ -29,10 +37,27 @@ $(document).ready(function() {
 	 
 });
 
-function buttonSearchOnClick() {
-	var value = $("#tableSearch").val().toLowerCase();
-	console.log(value);
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+$(document).on('change', '#inputFileAvatar', inputFileAvatarOnChange);
+function inputFileAvatarOnChange() {
+	$inputFileAvatar = $("#inputFileAvatar");
+	var file = $inputFileAvatar.prop("files")[0];
+	var formData = new FormData();
+	formData.append("file", file);
+	$.ajax({
+        url: '/upload-file',
+        type: 'POST',
+        data: formData,
+        // prevent jQuery from automatically transforming the data into a query string
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+        var link = data.uri; 
+        $("#imageAvatar").attr("src", link);
+            }
+    }).done(function (response) {
+        console.log(response);
+    }).fail(function () {
+
     });
 }
