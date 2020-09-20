@@ -77,6 +77,17 @@ public class LoginController {
 		}
 	}
 
+	// @RequestMapping(value = "/add-user1", method = RequestMethod.POST)
+	// public ResponseEntity<UserDto> insertUser(@ModelAttribute UserDto userDto) {
+	//
+	// UserDto result = userService.insertUser(userDto);
+	// if (result != null) {
+	// return new ResponseEntity<>(result, HttpStatus.OK);
+	// } else {
+	// return new ResponseEntity<>(result, HttpStatus.NOT_ACCEPTABLE);
+	// }
+	// }
+
 	@PostMapping("/upload-file")
 	@ResponseBody
 	public FileResponse uploadFile(@RequestParam("file") MultipartFile file) {

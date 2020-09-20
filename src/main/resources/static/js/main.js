@@ -9,7 +9,7 @@ function buttonSearchOnClick() {
 
 $(document).ready(function() {
 	$('.table').on('click', '#shownBtn', function(){
-		console.log("Show modal");
+//		console.log("Show modal");
 		var $model = $('#exampleModal');
 		
 		var userName = $(this).parents("tr").find("#rowUserId").html();
@@ -35,6 +35,21 @@ $(document).ready(function() {
 		  $('.table').tableExport({type:'csv'});
 		});
 	 
+});
+
+$(document).ready(function() {
+	$('#addUser').on('click', function() {
+		console.log("Show modal");
+		$('#exampleModal').modal('show');
+	});
+	});
+
+$('#exampleModal').on('show.bs.modal', function (e) {
+	console.log("Show modal");
+	var $model = $('#exampleModal');
+	$model.find("#inputId").val("");
+	$model.find("#inputName").val("");
+	$model.find("#inputAge").val("");
 });
 
 $(document).on('change', '#inputFileAvatar', inputFileAvatarOnChange);

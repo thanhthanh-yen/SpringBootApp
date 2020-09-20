@@ -39,6 +39,12 @@
 			</nav>
 		</div>
 
+		<div>
+			<button class="btn btn-primary" id="addUser"
+				type="button">Add new user</button>
+				<br><br>
+		</div>
+		
 		<!-- Table -->
 		<table class="table table-bordered" style="width: 100%">
 			<thead class="table-info">
@@ -88,7 +94,7 @@
 						</div>
 
 						<div class="col-md-6">
-							<form th:action="@{/add-user}" th:object="${userDto}" method="post" >
+							<form th:action="@{/add-user}">
 								<div class="row">
 									<div class="col-md-2">
 										<label for="inputId">ID</label>
@@ -103,7 +109,8 @@
 										<label for="inputName">Name</label>
 									</div>
 									<div class="col-sm-9">
-										<input id="inputName" name="userName" type="text" th:field="*{userName}" class="form-control mx-sm-3" />
+										<input id="inputName" name="userName" type="text"
+											class="form-control mx-sm-3" />
 									</div>
 								</div>
 
@@ -112,7 +119,8 @@
 										<label for="inputAge">Age</label>
 									</div>
 									<div class="col-sm-9">
-										<input id="inputAge" name="userAge" type="text"  th:field="*{userAge}" class="form-control mx-sm-3" />
+										<input id="inputAge" name="userAge" type="text"
+											class="form-control mx-sm-3" />
 									</div>
 								</div>
 								<button type="submit" class="btn btn-primary">Submit</button>
