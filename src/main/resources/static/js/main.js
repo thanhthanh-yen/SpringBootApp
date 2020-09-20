@@ -35,6 +35,14 @@ $(document).ready(function() {
 		  $('.table').tableExport({type:'csv'});
 		});
 	 
+	 $('#exampleModal').on('show.bs.modal', function (e) {
+			console.log("Show modal");
+			var $model = $('#exampleModal');
+			$model.find("#inputId").val("");
+			$model.find("#inputName").val("");
+			$model.find("#inputAge").val("");
+		});
+	 
 });
 
 $(document).ready(function() {
@@ -44,13 +52,6 @@ $(document).ready(function() {
 	});
 	});
 
-$('#exampleModal').on('show.bs.modal', function (e) {
-	console.log("Show modal");
-	var $model = $('#exampleModal');
-	$model.find("#inputId").val("");
-	$model.find("#inputName").val("");
-	$model.find("#inputAge").val("");
-});
 
 $(document).on('change', '#inputFileAvatar', inputFileAvatarOnChange);
 function inputFileAvatarOnChange() {
