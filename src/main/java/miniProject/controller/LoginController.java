@@ -66,7 +66,7 @@ public class LoginController {
 		return "home";
 	}
 
-	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
+	@RequestMapping(value = "/add-user", method = RequestMethod.POST)
 	public ResponseEntity<UserDto> insertUser(@Validated(UserDto.New.class) @RequestBody UserDto userDto) {
 
 		UserDto result = userService.insertUser(userDto);

@@ -82,35 +82,42 @@
 						<div class=" col-md-6">
 							<img id="imageAvatar" class="img-fluid" alt="Responsive image">
 
-							<form method="POST" enctype="multipart/form-data"
-								th:action="@{/upload-file}">
+							<form method="POST" enctype="multipart/form-data">
 								<input id="inputFileAvatar" type="file" name="file"> <br />
 							</form>
 						</div>
 
-						<div class=" col-md-6">
-							<form class="form-inline">
-								<label for="inputId">ID</label>
-								<div class="col-sm-8">
-									<input id="inputId" type="text" class="form-control mx-sm-3" />
+						<div class="col-md-6">
+							<form th:action="@{/add-user}" th:object="${userDto}" method="post" >
+								<div class="row">
+									<div class="col-md-2">
+										<label for="inputId">ID</label>
+									</div>
+									<div class="col-sm-9">
+										<input id="inputId" type="text" class="form-control mx-sm-3" />
+									</div>
 								</div>
-							</form>
 
-							<form class="form-inline mt-2">
-								<label for="inputName">Name</label>
-								<div class="col-sm-8">
-									<input id="inputName" type="text" class="form-control mx-sm-3" />
+								<div class="row mt-2">
+									<div class="col-md-2">
+										<label for="inputName">Name</label>
+									</div>
+									<div class="col-sm-9">
+										<input id="inputName" name="userName" type="text" th:field="*{userName}" class="form-control mx-sm-3" />
+									</div>
 								</div>
-							</form>
 
-							<form class="form-inline mt-2">
-								<label for="inputAge">Age</label>
-								<div class="col-sm-8">
-									<input id="inputAge" type="text" class="form-control mx-sm-3" />
+								<div class="row mt-2">
+									<div class="col-md-2">
+										<label for="inputAge">Age</label>
+									</div>
+									<div class="col-sm-9">
+										<input id="inputAge" name="userAge" type="text"  th:field="*{userAge}" class="form-control mx-sm-3" />
+									</div>
 								</div>
+								<button type="submit" class="btn btn-primary">Submit</button>
 							</form>
 						</div>
-
 
 
 					</div>
