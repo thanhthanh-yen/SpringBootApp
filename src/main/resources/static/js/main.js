@@ -1,3 +1,4 @@
+// Search user
 $(document).on('click', '#searchBtn', buttonSearchOnClick);
 function buttonSearchOnClick() {
 	var value = $("#tableSearch").val().toLowerCase();
@@ -7,14 +8,15 @@ function buttonSearchOnClick() {
     });
 }
 
+var mode = "add";
 $(document).ready(function() {
+	// when edit button is click, get data in corresponding row and display in popup
 	$('.table').on('click', '#shownBtn', function(){
-//		console.log("Show modal");
+		
+		mode = "edit";
+		console.log("Show modal");
 		var $model = $('#exampleModal');
 		
-		var userName = $(this).parents("tr").find("#rowUserId").html();
-		$model.find("#inputId").val(userName);
-
 		var userName = $(this).parents("tr").find("#rowUserName").html();
 		$model.find("#inputName").val(userName);
 		
@@ -31,28 +33,33 @@ $(document).ready(function() {
 //		    });
 //		  });
 	 
-	 $('#export').on('click', function() {
-		  $('.table').tableExport({type:'csv'});
-		});
-	 
+	 // when add button is click and the modal is be shown, reset all data in popup
 	 $('#exampleModal').on('show.bs.modal', function (e) {
 			console.log("Show modal");
-			var $model = $('#exampleModal');
-			$model.find("#inputId").val("");
-			$model.find("#inputName").val("");
-			$model.find("#inputAge").val("");
+			if (mode == "add") {
+				var $model = $('#exampleModal');
+				$model.find("#inputId").val("");
+				$model.find("#inputName").val("");
+				$model.find("#inputAge").val("");
+			    $("#imageAvatar").attr("src", "");
+			}
 		});
-	 
 });
 
-$(document).ready(function() {
-	$('#addUser').on('click', function() {
-		console.log("Show modal");
-		$('#exampleModal').modal('show');
-	});
-	});
+// Export to CSV
+$(document).on('click', '#export', function() {
+	  $('.table').tableExport({type:'csv'});
+});
 
+// Add user when click add button
+$(document).on('click', '#addUser', addUser);
+function addUser() {
+	mode = "add";
+	console.log("Show modal");
+	$('#exampleModal').modal('show');
+}
 
+// When input image, it auto upload image to server using ajax, then get image after upload success (in success callback) and display in popup
 $(document).on('change', '#inputFileAvatar', inputFileAvatarOnChange);
 function inputFileAvatarOnChange() {
 	$inputFileAvatar = $("#inputFileAvatar");

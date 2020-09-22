@@ -11,4 +11,6 @@ public interface UserService {
 	List<UserDto> getUserList();
 
 	UserDto insertUser(UserDto userDto);
+
+	UserDto updateUser(UserDto userDto);
 }

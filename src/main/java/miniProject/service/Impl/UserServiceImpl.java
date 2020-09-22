@@ -55,4 +55,22 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+	@Override
+	public UserDto updateUser(UserDto userDto) {
+		// TODO Auto-generated method stub
+		try {
+			User userDb = userRepository.findByUserId(userDto.getUserId());
+			if (userDb != null) {
+				User user = userMapper.toEntity(userDto);
+				UserDto saveUserDto = userMapper.toDto(userRepository.save(user));
+				return saveUserDto;
+			} else {
+				throw new ApplicationContextException("User has not found");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw new ApplicationContextException("Can not update user!");
+		}
+	}
+
 }

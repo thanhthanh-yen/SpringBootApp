@@ -84,6 +84,17 @@ public class LoginController {
 		return "redirect:/home";
 	}
 
+	@RequestMapping(value = "/update-user", method = RequestMethod.PUT)
+	public ResponseEntity<UserDto> updateUser(@Validated(UserDto.New.class) @RequestBody UserDto userDto) {
+
+		UserDto result = userService.updateUser(userDto);
+		if (result != null) {
+			return new ResponseEntity<>(result, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(result, HttpStatus.NOT_ACCEPTABLE);
+		}
+	}
+
 	@PostMapping("/upload-file")
 	@ResponseBody
 	public FileResponse uploadFile(@RequestParam("file") MultipartFile file) {
