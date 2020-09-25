@@ -9,6 +9,7 @@ public class UserDto {
 	private Long userId;
 	private String userName;
 	private int userAge;
+	private String userUri;
 
 	public Long getUserId() {
 		return userId;
@@ -34,9 +35,17 @@ public class UserDto {
 		this.userAge = userAge;
 	}
 
+	public String getUserUri() {
+		return userUri;
+	}
+
+	public void setUserUri(String userUri) {
+		this.userUri = userUri;
+	}
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "UserDto [id=" + userId + ", name=" + userName + ", age=" + userAge + "]";
+		return "UserDto [id=" + userId + ", name=" + userName + ", age=" + userAge + ", uri=" + userUri + "]";
 	}
 }

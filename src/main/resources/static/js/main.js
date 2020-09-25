@@ -10,20 +10,28 @@ function buttonSearchOnClick() {
 
 var mode = "add";
 $(document).ready(function() {
-	// when edit button is click, get data in corresponding row and display in popup
+	// when edit button is click, get data in corresponding row and display into popup
 	$('.table').on('click', '#shownBtn', function(){
 		
 		mode = "edit";
 		console.log("Show modal");
 		var $model = $('#exampleModal');
 		
-		var userName = $(this).parents("tr").find("#rowUserName").html();
-		$model.find("#inputName").val(userName);
+		var userName = $(this).parents("tr").find("#rowUserId").html();
+		$model.find("#inputId").val(userName);
 		
-		var userName = $(this).parents("tr").find("#rowUserAge").html();
-		$model.find("#inputAge").val(userName);
+		var userId = $(this).parents("tr").find("#rowUserName").html();
+		$model.find("#inputName").val(userId);
+		
+		var userAge = $(this).parents("tr").find("#rowUserAge").html();
+		$model.find("#inputAge").val(userAge);
+		
+		var userUri = $(this).parents("tr").find("#rowUserImage").attr("src");
+		$("#inputImage").attr("src", userUri);
 		
 		$('#exampleModal').modal('show');
+		
+		$('#formPopup').attr( "action", "/update-user1");
 	});
 	
 //	 $("#tableSearch").on("keyup", function() {
@@ -41,7 +49,7 @@ $(document).ready(function() {
 				$model.find("#inputId").val("");
 				$model.find("#inputName").val("");
 				$model.find("#inputAge").val("");
-			    $("#imageAvatar").attr("src", "");
+			    $("#inputImage").attr("src", "");
 			}
 		});
 });
@@ -57,6 +65,7 @@ function addUser() {
 	mode = "add";
 	console.log("Show modal");
 	$('#exampleModal').modal('show');
+	$('#formPopup').attr( "action", "/add-user1");
 }
 
 // When input image, it auto upload image to server using ajax, then get image after upload success (in success callback) and display in popup
@@ -76,7 +85,7 @@ function inputFileAvatarOnChange() {
         processData: false,
         success: function (data) {
         var link = data.uri; 
-        $("#imageAvatar").attr("src", link);
+        $("#inputImage").attr("src", link);
             }
     }).done(function (response) {
         console.log(response);

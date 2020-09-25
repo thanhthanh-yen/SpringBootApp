@@ -63,6 +63,7 @@ public class LoginController {
 	public String getUser(Model model) {
 		List<UserDto> userDtos = userService.getUserList();
 		model.addAttribute("users", userDtos);
+		System.out.println("===============================================user");
 		return "home";
 	}
 
@@ -84,7 +85,7 @@ public class LoginController {
 		return "redirect:/home";
 	}
 
-	@RequestMapping(value = "/update-user", method = RequestMethod.PUT)
+	@RequestMapping(value = "/update-user", method = RequestMethod.POST)
 	public ResponseEntity<UserDto> updateUser(@Validated(UserDto.New.class) @RequestBody UserDto userDto) {
 
 		UserDto result = userService.updateUser(userDto);
@@ -93,6 +94,13 @@ public class LoginController {
 		} else {
 			return new ResponseEntity<>(result, HttpStatus.NOT_ACCEPTABLE);
 		}
+	}
+
+	@RequestMapping(value = "/update-user1", method = RequestMethod.POST)
+	public String updateUser1(@ModelAttribute UserDto userDto) {
+
+		UserDto result = userService.updateUser(userDto);
+		return "redirect:/home";
 	}
 
 	@PostMapping("/upload-file")

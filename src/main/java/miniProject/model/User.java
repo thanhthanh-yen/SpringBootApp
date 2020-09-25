@@ -21,6 +21,9 @@ public class User {
 	@Column(name = "age")
 	private int userAge;
 
+	@Column(name = "uri")
+	private String userUri;
+
 	public Long getUserId() {
 		return userId;
 	}
@@ -43,6 +46,14 @@ public class User {
 
 	public void setUserAge(int userAge) {
 		this.userAge = userAge;
+	}
+
+	public String getUserUri() {
+		return userUri;
+	}
+
+	public void setUserUri(String userUri) {
+		this.userUri = userUri;
 	}
 
 	public User() {

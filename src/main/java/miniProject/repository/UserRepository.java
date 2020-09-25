@@ -9,7 +9,7 @@ import miniProject.model.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-	@Query(value = "select * from userlist", nativeQuery = true)
+	@Query(value = "select * from userlist order by id", nativeQuery = true)
 	List<User> getAllUser();
 
 	User findByUserName(String userName);
