@@ -17,6 +17,8 @@ $(document).ready(function() {
 		console.log("Show modal");
 		var $model = $('#exampleModal');
 		
+		// find the nearest parent is 'tr'
+		// get content of elements: input .val(), span .text(), remain .html()
 		var userName = $(this).parents("tr").find("#rowUserId").html();
 		$model.find("#inputId").val(userName);
 		
@@ -27,20 +29,15 @@ $(document).ready(function() {
 		$model.find("#inputAge").val(userAge);
 		
 		var userUri = $(this).parents("tr").find("#rowUserImage").attr("src");
-		$("#inputImage").attr("src", userUri);
+		$("#inputImage").attr("src", userUri); // get src of image from column then set to src image in popup
+		$model.find("#inputUri").val(userUri); // set userUri field in popup for submitting to server
 		
 		$('#exampleModal').modal('show');
 		
 		$('#formPopup').attr( "action", "/update-user1");
 	});
 	
-//	 $("#tableSearch").on("keyup", function() {
-//		    var value = $(this).val().toLowerCase();
-//		    $("#myTable tr").filter(function() {
-//		      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-//		    });
-//		  });
-	 
+
 	 // when add button is click and the modal is be shown, reset all data in popup
 	 $('#exampleModal').on('show.bs.modal', function (e) {
 			console.log("Show modal");
@@ -49,6 +46,7 @@ $(document).ready(function() {
 				$model.find("#inputId").val("");
 				$model.find("#inputName").val("");
 				$model.find("#inputAge").val("");
+				$model.find("#inputUri").val("");
 			    $("#inputImage").attr("src", "");
 			}
 		});
@@ -86,6 +84,7 @@ function inputFileAvatarOnChange() {
         success: function (data) {
         var link = data.uri; 
         $("#inputImage").attr("src", link);
+        $("#inputUri").val(link);
             }
     }).done(function (response) {
         console.log(response);

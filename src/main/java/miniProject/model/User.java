@@ -8,9 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
+// specify the name of database table to be used for mapping
 @Table(name = "userlist")
 public class User {
+	// specify the primary key of an entity
 	@Id
+	// increment of specified column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", columnDefinition = "serial")
 	private Long userId;

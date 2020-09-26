@@ -66,8 +66,7 @@
 					<img id="rowUserImage" class="img-fluid" th:src="${user.userUri}" alt="Responsive image">
 					</td>
 					<td>
-						<button type="button" class="btn btn-info" id="shownBtn">Click
-							here</button>
+						<button type="button" class="btn btn-primary" id="shownBtn">Edit</button>
 					</td>
 				</tr>
 			</tbody>
@@ -91,8 +90,9 @@
 						</div>
 						<div class="modal-body row">
 							<div class=" col-md-6">
-								<img id="inputImage" class="img-fluid" name="userUri" alt="Responsive image">
-								<input id="inputFileAvatar" type="file" name="file"> <br />
+								<img id="inputImage" class="img-fluid" alt="Responsive image">
+								<input id="inputFileAvatar" type="file"> <br />
+								<input id="inputUri" type="hidden" name="userUri">
 							</div>
 
 							<div class="col-md-6">
