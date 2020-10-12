@@ -73,4 +73,19 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+	@Override
+	public List<UserDto> searchUser(String keyword) {
+		// TODO Auto-generated method stub
+		if (keyword != null) {
+			List<User> users = userRepository.search(keyword);
+
+			List<UserDto> userDtos = new ArrayList<>();
+			if (users != null && !users.isEmpty()) {
+				users.forEach(user -> userDtos.add(userMapper.toDto(user)));
+			}
+			return userDtos;
+		}
+		return null;
+	}
+
 }

@@ -3,6 +3,7 @@ package miniProject.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -87,6 +88,13 @@ public class UserController {
 
 		String uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/uploads/").path(name).toUriString();
 		return new FileResponse(name, uri, file.getContentType(), file.getSize());
+	}
+
+	@RequestMapping(value = "/search-user1", method = RequestMethod.POST)
+	public String searchUser1(Model model, @Param("keyword") String keyword) {
+		List<UserDto> userDtos = userService.searchUser(keyword);
+		model.addAttribute("users", userDtos);
+		return "redirect:/home";
 	}
 
 }

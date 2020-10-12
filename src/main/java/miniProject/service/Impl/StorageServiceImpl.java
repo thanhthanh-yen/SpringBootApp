@@ -1,4 +1,4 @@
-package miniProject.service;
+package miniProject.service.Impl;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,6 +14,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import miniProject.exception.StorageException;
+import miniProject.service.StorageService;
 import miniProject.storage.StorageProperties;
 
 @Service

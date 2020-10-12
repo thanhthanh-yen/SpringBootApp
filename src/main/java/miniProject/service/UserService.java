@@ -13,4 +13,6 @@ public interface UserService {
 	UserDto insertUser(UserDto userDto);
 
 	UserDto updateUser(UserDto userDto);
+
+	List<UserDto> searchUser(String keyword);
 }

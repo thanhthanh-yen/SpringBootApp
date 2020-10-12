@@ -29,12 +29,13 @@
 		<!-- Search -->
 		<div>
 			<nav class="navbar navbar-light bg-light">
-				<form class="form-inline ml-auto">
-					<i class="material-icons">&#xE8B6;</i> <input
+				<form class="form-inline ml-auto" th:action="@{/search-user1}" method="POST">
+					<i class="material-icons">&#xE8B6;</i> 
+					<input
 						class="form-control mr-sm-2" id="tableSearch" type="search"
-						placeholder="Search..." aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0" id="searchBtn"
-						type="button">Search</button>
+						placeholder="Search..." aria-label="Search" name="keyword">
+					<input class="btn btn-outline-success my-2 my-sm-0" id="searchBtn"
+						type="submit" value="Search">
 				</form>
 			</nav>
 		</div>

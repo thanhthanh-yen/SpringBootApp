@@ -1,12 +1,12 @@
 // Search user
-$(document).on('click', '#searchBtn', buttonSearchOnClick);
-function buttonSearchOnClick() {
-	var value = $("#tableSearch").val().toLowerCase();
-	console.log(value);
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-}
+//$(document).on('click', '#searchBtn', buttonSearchOnClick);
+//function buttonSearchOnClick() {
+//	var value = $("#tableSearch").val().toLowerCase();
+//	console.log(value);
+//    $("#myTable tr").filter(function() {
+//      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+//    });
+//}
 
 var mode = "add";
 $(document).ready(function() {
@@ -63,6 +63,7 @@ function addUser() {
 	mode = "add";
 	console.log("Show modal");
 	$('#exampleModal').modal('show');
+	// TODO(thanhvtt): need to update the action url
 	$('#formPopup').attr( "action", "/add-user1");
 }
 
