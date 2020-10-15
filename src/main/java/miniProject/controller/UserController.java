@@ -39,8 +39,13 @@ public class UserController {
 	}
 
 	@GetMapping("/home")
-	public String getUser(Model model) {
+	public String getUser(Model model, @Param("keyword") String keyword) {
 		List<UserDto> userDtos = userService.getUserList();
+		if (keyword == null || keyword.isEmpty()) {
+			userDtos = userService.getUserList();
+		} else {
+			userDtos = userService.searchUser(keyword);
+		}
 		model.addAttribute("users", userDtos);
 		return "home";
 	}
@@ -88,13 +93,6 @@ public class UserController {
 
 		String uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/uploads/").path(name).toUriString();
 		return new FileResponse(name, uri, file.getContentType(), file.getSize());
-	}
-
-	@RequestMapping(value = "/search-user1", method = RequestMethod.POST)
-	public String searchUser1(Model model, @Param("keyword") String keyword) {
-		List<UserDto> userDtos = userService.searchUser(keyword);
-		model.addAttribute("users", userDtos);
-		return "redirect:/home";
 	}
 
 }
